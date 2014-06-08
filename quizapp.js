@@ -170,13 +170,61 @@ $(function(){
 			var d = questionArray[index].ansD;
 			var page = index + 1;
 			replaceQuestion(q, a, b, c, d, page);
-			if (index > 0) {
-				var formval = $('#form').val();
-				console.log(formval);
+
+			if (page >= 0) {
+				$('form').submit(function(e){
+					e.preventDefault();
+					var formval = $('input[name=answer]:checked', '#form');
+					var newAnswerTally = answerTally + formval;
+					console.log(formval);
+					return formval;
+				});
 			}
+			console.log(formval);
 			index++;
 		}
 		return false;
 	});
 	
 });
+			// if (index > 0) {
+			// 	$( "form" ).submit(function(e){
+			// 		e.preventDefault();
+			// 		var val = this;
+
+			// 		console.log(val);
+			// 		});
+			// }
+
+
+
+	// 		$('input[type="submit"]').click(function() {
+	// 	$('input[type="submit"]').attr('value','Submit');
+	// 	$('label').show();
+	// 	$('.question').show();
+	// 	if(index<questionArray.length){
+	// 		var q = questionArray[index].question;
+	// 		var a = questionArray[index].ansA;
+	// 		var b = questionArray[index].ansB;
+	// 		var c = questionArray[index].ansC;
+	// 		var d = questionArray[index].ansD;
+	// 		var page = index + 1;
+	// 		replaceQuestion(q, a, b, c, d, page);
+	// 		if (index > 0) {
+	// 			// var formval = $('form').addEventListener();
+	// 			$('form').submit(function(e){
+	// 				e.preventDefault();
+	// 				var val = $('input[name=answer]:checked', '#form').val()
+	// 			// 	var val = this;
+	// 			// 	// event.val();
+	// 			// 	// console.log(event);
+	// 				console.log(val);
+	// 			// 	return false;
+	// 				});
+	// 			// console.log(formval);
+	// 			console.log(val);
+	// 		}
+	// 		index++;
+	// 	}
+	// 	return false;
+	// });
