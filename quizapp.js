@@ -132,7 +132,7 @@ $(function(){
 			var b = questionArray[index].ansB;
 			var c = questionArray[index].ansC;
 			var d = questionArray[index].ansD;
-			replaceQuestion(b, c, d, index);
+			replaceQuestion(a, b, c, d, index);
 
 		index++;
 		}
