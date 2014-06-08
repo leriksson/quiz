@@ -124,7 +124,7 @@ $(function(){
 		$('#pagenum').text(i);
 	}
 
-	$('input[type="submit"]').click(function() {
+	if ($('input[value="New Quiz"]').length) {$('input[type="submit"]').click(function() {
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
@@ -137,7 +137,24 @@ $(function(){
 			var page = index + 1;
 			replaceQuestion(q, a, b, c, d, page);
 			index++;
-		}
-	});
+			}
+		});
+	}
+
+	// $('input[type="submit"]').click(function() {
+	// 	$('input[type="submit"]').attr('value','Submit');
+	// 	$('label').show();
+	// 	$('.question').show();
+	// 	if(index<questionArray.length){
+	// 		var q = questionArray[index].question;
+	// 		var a = questionArray[index].ansA;
+	// 		var b = questionArray[index].ansB;
+	// 		var c = questionArray[index].ansC;
+	// 		var d = questionArray[index].ansD;
+	// 		var page = index + 1;
+	// 		replaceQuestion(q, a, b, c, d, page);
+	// 		index++;
+	// 	}
+	// });
 	
 });
