@@ -18,6 +18,16 @@ $(function(){
 		// this.ansD = ansD;
 	}
 
+	// function that changes all Q&A in the question window
+	function replaceQuestion(q, a, b, c, d, i) {
+		$question.text(q);
+		$ansA.text(a);
+		$ansB.text(b);
+		$ansC.text(c);
+		$ansD.text(d);
+		$('#pagenum').text(i);
+	}
+
 // creating question objects
 
 	var question1 = new QuestionTemplate();
@@ -52,16 +62,7 @@ $(function(){
 		question4.ansD = "D. I like Ike!";
 		question4.num = 4;
 
-// function that changes all Q&A in the question window
 
-	function nextQuestion(q, a, b, c, d, n) {
-		$question.text(q);
-		$ansA.text(a);
-		$ansB.text(b);
-		$ansC.text(c);
-		$ansD.text(d);
-		$('#pagenum').text(n);
-	}
 
 // add question objects to questionArray
 	
@@ -85,23 +86,41 @@ $(function(){
 	$('label').hide();
 	$('.question').hide();
 
+// $('input[type="submit"]').click(function() {
+// answerTally = 0;
+// $('input[type="submit"]').attr('value','Submit');
+// $('label').show();
+// $('.question').show();
+// replaceQuestion(question1.question, question1.ansA, question1.ansB, question1.ansC, question1.ansD, question1.num);
+// $('input[type="submit"]').click(function() {
+// replaceQuestion(question2.question, question2.ansA, question2.ansB, question2.ansC, question2.ansD, question2.num);
+// return false;
+// });
+
+// });
+
+
+// $question.text(question1.question);
+// $ansA.text(question1.ansA);
+// $ansB.text(question1.ansB);
+// $ansC.text(question1.ansC);
+// $ansD.text(question1.ansD);
+// return false;
+	
 	$('input[type="submit"]').click(function() {
-		answerTally = 0;
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
-		nextQuestion(question1.question, question1.ansA, question1.ansB, question1.ansC, question1.ansD, question1.num);
-		$('input[type="submit"]').click(function() {
-			nextQuestion(question2.question, question2.ansA, question2.ansB, question2.ansC, question2.ansD, question2.num);
-			return false;
-		});
-		// $question.text(question1.question);
-		// $ansA.text(question1.ansA);
-		// $ansB.text(question1.ansB);
-		// $ansC.text(question1.ansC);
-		// $ansD.text(question1.ansD);
-		// return false;
-	});
+		for (i=0; i<questionArray.length; i++) {
+			var q = questionArray[arrayNum].question;
+			var a = questionArray[arrayNum].ansA;
+			var b = questionArray[arrayNum].ansB;
+			var c = questionArray[arrayNum].ansC;
+			var d = questionArray[arrayNum].ansD;
+			var i = i;
 
+			replaceQuestion(q, a, b, c, d, n, i);
+		}
+	});
 	
 });
