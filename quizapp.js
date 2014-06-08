@@ -91,13 +91,16 @@ $(function(){
 		$('label').show();
 		$('.question').show();
 		nextQuestion(question1.question, question1.ansA, question1.ansB, question1.ansC, question1.ansD, question1.num);
+		$('input[type="submit"]').click(function() {
+			nextQuestion(question2.question, question2.ansA, question2.ansB, question2.ansC, question2.ansD, question2.num);
 
+		});
 		// $question.text(question1.question);
 		// $ansA.text(question1.ansA);
 		// $ansB.text(question1.ansB);
 		// $ansC.text(question1.ansC);
 		// $ansD.text(question1.ansD);
-
+		// return false;
 	});
 
 	
