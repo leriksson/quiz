@@ -124,7 +124,41 @@ $(function(){
 		$('#pagenum').text(i);
 	}
 
-	if ($('input[value="New Quiz"]').length) {$('input[type="submit"]').click(function() {
+	// function pageUp() {
+	// 	var q = questionArray[index].question;
+	// 	var a = questionArray[index].ansA;
+	// 	var b = questionArray[index].ansB;
+	// 	var c = questionArray[index].ansC;
+	// 	var d = questionArray[index].ansD;
+	// 	var page = index + 1;
+	// 	replaceQuestion(q, a, b, c, d, page);
+	// 	console.log(index);
+	// 	index++;
+	// }
+
+	// if ($('input[value="New Quiz"]').length) {
+	// 	$('input[type="submit"]').click(function() {
+	// 		$('input[type="submit"]').attr('value','Submit');
+	// 		$('label').show();
+	// 		$('.question').show();
+	// 		if(index<questionArray.length){
+	// 			pageUp();
+	// 			// var q = questionArray[index].question;
+	// 			// var a = questionArray[index].ansA;
+	// 			// var b = questionArray[index].ansB;
+	// 			// var c = questionArray[index].ansC;
+	// 			// var d = questionArray[index].ansD;
+	// 			// var page = index + 1;
+	// 			// replaceQuestion(q, a, b, c, d, page);
+	// 			// console.log(index);
+	// 			// index++;
+	// 		}
+	// 	});
+	// } else {
+
+	// }
+
+	$('input[type="submit"]').click(function() {
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
@@ -136,25 +170,13 @@ $(function(){
 			var d = questionArray[index].ansD;
 			var page = index + 1;
 			replaceQuestion(q, a, b, c, d, page);
-			index++;
+			if (index > 0) {
+				var formval = $('#form').val();
+				console.log(formval);
 			}
-		});
-	}
-
-	// $('input[type="submit"]').click(function() {
-	// 	$('input[type="submit"]').attr('value','Submit');
-	// 	$('label').show();
-	// 	$('.question').show();
-	// 	if(index<questionArray.length){
-	// 		var q = questionArray[index].question;
-	// 		var a = questionArray[index].ansA;
-	// 		var b = questionArray[index].ansB;
-	// 		var c = questionArray[index].ansC;
-	// 		var d = questionArray[index].ansD;
-	// 		var page = index + 1;
-	// 		replaceQuestion(q, a, b, c, d, page);
-	// 		index++;
-	// 	}
-	// });
+			index++;
+		}
+		return false;
+	});
 	
 });
