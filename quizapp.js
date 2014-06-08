@@ -18,16 +18,6 @@ $(function(){
 		// this.ansD = ansD;
 	}
 
-	// function that changes all Q&A in the question window
-	function replaceQuestion(q, a, b, c, d, i) {
-		$question.text(q);
-		$ansA.text(a);
-		$ansB.text(b);
-		$ansC.text(c);
-		$ansD.text(d);
-		$('#pagenum').text(i);
-	}
-
 // creating question objects
 
 	var question1 = new QuestionTemplate();
@@ -78,13 +68,13 @@ $(function(){
 		adult = "You are a jaded adult. You spend your nights staring at the cieling, thinking about how you let the only person you ever loved slip through your fingers. And you still get choked up when Don Henley\'s \'Boys of Summer\' plays in the supermarket.";
 		senior = "You are geriatric. You'd be forgotten if it wasn't for your will.";
 
-	console.log(questionArray);
-	console.log(baby);
+	// console.log(questionArray);
+	// console.log(baby);
 
 // new quiz - reset quiz
 
-	$('label').hide();
-	$('.question').hide();
+	// $('label').hide();
+	// $('.question').hide();
 
 // $('input[type="submit"]').click(function() {
 // answerTally = 0;
@@ -106,20 +96,45 @@ $(function(){
 // $ansC.text(question1.ansC);
 // $ansD.text(question1.ansD);
 // return false;
+
+	var index = 0;
 	
+	function replaceQuestion(){
+		var args = [].slice.call(arguments);
+		var divs = [].slice.call(document.getElementsByTagName('div'));
+		console.log(args);
+		divs.forEach(function(e){e.parentElement.removeChild(e);});
+		args.forEach(function(e){
+			var div = document.createElement('div');
+		var label = document.createElement('label');
+		label.textContent = e;
+			div.appendChild(label);
+		document.body.appendChild(div);
+		});
+	}
+
+		// function that changes all Q&A in the question window
+	// function replaceQuestion(q, a, b, c, d, i) {
+	// 	$question.text(q);
+	// 	$ansA.text(a);
+	// 	$ansB.text(b);
+	// 	$ansC.text(c);
+	// 	$ansD.text(d);
+	// 	$('#pagenum').text(i);
+	// }
+
 	$('input[type="submit"]').click(function() {
 		$('input[type="submit"]').attr('value','Submit');
-		$('label').show();
-		$('.question').show();
-		for (i=0; i<questionArray.length; i++) {
-			var q = questionArray[i].question;
-			var a = questionArray[i].ansA;
-			var b = questionArray[i].ansB;
-			var c = questionArray[i].ansC;
-			var d = questionArray[i].ansD;
-			var i = i;
 
-			replaceQuestion(q, a, b, c, d, n, i);
+		if(index<questionArray.length){
+			var q = questionArray[index].question;
+			var a = questionArray[index].ansA;
+			var b = questionArray[index].ansB;
+			var c = questionArray[index].ansC;
+			var d = questionArray[index].ansD;
+			replaceQuestion(b, c, d, index);
+
+		index++;
 		}
 	});
 	
