@@ -73,8 +73,8 @@ $(function(){
 
 // new quiz - reset quiz
 
-	// $('label').hide();
-	// $('.question').hide();
+	$('label').hide();
+	$('.question').hide();
 
 // $('input[type="submit"]').click(function() {
 // answerTally = 0;
@@ -99,42 +99,44 @@ $(function(){
 
 	var index = 0;
 	
-	function replaceQuestion(){
-		var args = [].slice.call(arguments);
-		var divs = [].slice.call(document.getElementsByTagName('div'));
-		console.log(args);
-		divs.forEach(function(e){e.parentElement.removeChild(e);});
-		args.forEach(function(e){
-			var div = document.createElement('div');
-		var label = document.createElement('label');
-		label.textContent = e;
-			div.appendChild(label);
-		document.body.appendChild(div);
-		});
-	}
+	// function replaceQuestion(){
+	// 	var args = [].slice.call(arguments);
+	// 	var divs = [].slice.call(document.getElementsByTagName('div'));
+	// 	console.log( Object.prototype.toString.call(args));
+	// 	divs.forEach(function(e){e.parentElement.removeChild(e);});
+	// 	args.forEach(function(e){
+	// 		var div = document.createElement('div');
+	// 		var label = document.createElement('label');
+	// 		label.textContent = e;
+	// 		div.appendChild(label);
+	// 	document.body.appendChild(div);
+	// 	});
+	// }
+
 
 		// function that changes all Q&A in the question window
-	// function replaceQuestion(q, a, b, c, d, i) {
-	// 	$question.text(q);
-	// 	$ansA.text(a);
-	// 	$ansB.text(b);
-	// 	$ansC.text(c);
-	// 	$ansD.text(d);
-	// 	$('#pagenum').text(i);
-	// }
+	function replaceQuestion(q, a, b, c, d, i) {
+		$question.text(q);
+		$ansA.text(a);
+		$ansB.text(b);
+		$ansC.text(c);
+		$ansD.text(d);
+		$('#pagenum').text(i);
+	}
 
 	$('input[type="submit"]').click(function() {
 		$('input[type="submit"]').attr('value','Submit');
-
+		$('label').show();
+		$('.question').show();
 		if(index<questionArray.length){
 			var q = questionArray[index].question;
 			var a = questionArray[index].ansA;
 			var b = questionArray[index].ansB;
 			var c = questionArray[index].ansC;
 			var d = questionArray[index].ansD;
-			replaceQuestion(a, b, c, d, index);
-
-		index++;
+			var page = index + 1;
+			replaceQuestion(q, a, b, c, d, page);
+			index++;
 		}
 	});
 	
