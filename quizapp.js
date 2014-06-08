@@ -112,11 +112,11 @@ $(function(){
 		$('label').show();
 		$('.question').show();
 		for (i=0; i<questionArray.length; i++) {
-			var q = questionArray[arrayNum].question;
-			var a = questionArray[arrayNum].ansA;
-			var b = questionArray[arrayNum].ansB;
-			var c = questionArray[arrayNum].ansC;
-			var d = questionArray[arrayNum].ansD;
+			var q = questionArray[i].question;
+			var a = questionArray[i].ansA;
+			var b = questionArray[i].ansB;
+			var c = questionArray[i].ansC;
+			var d = questionArray[i].ansD;
 			var i = i;
 
 			replaceQuestion(q, a, b, c, d, n, i);
