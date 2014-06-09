@@ -11,7 +11,6 @@ $(function(){
 // question constructor
 
 	function QuestionTemplate() {
-
 	}
 
 // creating question objects
@@ -49,7 +48,6 @@ $(function(){
 		question4.num = 4;
 
 
-
 // add question objects to questionArray
 	
 	questionArray.push(question1);
@@ -60,24 +58,17 @@ $(function(){
 // results
 
 	var baby = "You are a newborn babe. Your eyes wander about aimlessly like a drunk frog. You can see vague shapes now, but you have no context to try to understand any meaning.";
-		child = "You are an arrogant child. One who nurses fantasies of subjugating the world in the same manner as whatever chliched hero or icon is fueling your dreams today.";
-		adult = "You are a jaded adult. You spend your nights staring at the cieling, thinking about how you let the only person you ever loved slip through your fingers. And you still get choked up when Don Henley\'s \'Boys of Summer\' plays in the supermarket.";
-		senior = "You are geriatric. You'd be forgotten if it wasn't for your will.";
-
-	// console.log(questionArray);
-	// console.log(baby);
+		child = "You are an arrogant child. One who nurses fantasies of subjugating the world in the same manner as whatever cliche hero or icon is fueling your dreams today.";
+		adult = "You are a jaded adult. You spend your nights staring at the ceiling, thinking about how you let the only person you ever loved slip through your fingers. And you still get choked up when Don Henley\'s \'Boys of Summer\' plays in the supermarket.";
+		senior = "You are geriatric. You'd be forgotten if it wasn't for the fact that you haven't signed your will.";
 
 // new quiz - reset quiz
 
 	$('label').hide();
 	$('.question').hide();
-
-
+	$('#explanation').hide();
 
 	var index = 0;
-	
-
-
 
 		// function that changes all Q&A in the question window
 	function replaceQuestion(q, a, b, c, d, i) {
@@ -89,22 +80,18 @@ $(function(){
 		$('#pagenum').text(i);
 	}
 
-
-
 	$('form').submit(function(e){
 		e.preventDefault();
-		// var answerTally = 0;
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
 		var x = parseInt($('input[name="answer"]:checked').val(), 10);
-		if ( !isNaN(x)) {
+		
+		if ( !isNaN(x) && index<=questionArray.length) {
 			score += x;
 		}
-		
-		console.log(score);
-		
-		if(index<questionArray.length){
+				
+		if (index<questionArray.length){
 			var q = questionArray[index].question;
 			var a = questionArray[index].ansA;
 			var b = questionArray[index].ansB;
@@ -112,10 +99,57 @@ $(function(){
 			var d = questionArray[index].ansD;
 			var page = index + 1;
 			replaceQuestion(q, a, b, c, d, page);
+		}
+
+		if (index<=questionArray.length + 1){
 			index++;
 		}
+
+		// tally the score and render result
+		if(index == (questionArray.length) + 1) {
+			$('input[type="submit"]').attr('value','Restart Quiz');
+			$('label').hide();
+			$('.question').hide();
+			$('#explanation').show();
+
+			if (score >= 1 && score <= 6) {
+				console.log('new Baby');
+				$('#explanation').text(baby);
+				$('#age').text('4');
+			} else if (score >= 7 && score <= 10) {
+				console.log('spoiled child');
+				$('#explanation').text(child);
+				$('#age').text('12');
+			} else if (score >= 11 && score <= 13) {
+				console.log('grown ass man');
+				$('#explanation').text(adult);
+				$('#age').text('42');
+			} else if (score >= 14 && score <= 16) {
+				console.log('grumpy old man');
+				$('#explanation').text(senior);
+				$('#age').text('89');
+			}
+		}
+
+		// reset quiz
+
+		if (index == questionArray.length + 2) {
+			score = 0;
+			index = 1;
+			console.log('Restart');
+
+			$('#explanation').hide();
+			$('#age').text('?');
+
+			$question.text(questionArray[0].question);
+			$ansA.text(questionArray[0].ansA);
+			$ansB.text(questionArray[0].ansB);
+			$ansC.text(questionArray[0].ansC);
+			$ansD.text(questionArray[0].ansD);
+			$('#pagenum').text('1');
+		}
+
 		return score;
 	});
 	
 });
-		
