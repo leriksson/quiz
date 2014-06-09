@@ -11,11 +11,7 @@ $(function(){
 // question constructor
 
 	function QuestionTemplate() {
-		// this.question = question;
-		// this.ansA = ansA;
-		// this.ansB = ansB;
-		// this.ansC = ansC;
-		// this.ansD = ansD;
+
 	}
 
 // creating question objects
@@ -76,42 +72,11 @@ $(function(){
 	$('label').hide();
 	$('.question').hide();
 
-// $('input[type="submit"]').click(function() {
-// answerTally = 0;
-// $('input[type="submit"]').attr('value','Submit');
-// $('label').show();
-// $('.question').show();
-// replaceQuestion(question1.question, question1.ansA, question1.ansB, question1.ansC, question1.ansD, question1.num);
-// $('input[type="submit"]').click(function() {
-// replaceQuestion(question2.question, question2.ansA, question2.ansB, question2.ansC, question2.ansD, question2.num);
-// return false;
-// });
 
-// });
-
-
-// $question.text(question1.question);
-// $ansA.text(question1.ansA);
-// $ansB.text(question1.ansB);
-// $ansC.text(question1.ansC);
-// $ansD.text(question1.ansD);
-// return false;
 
 	var index = 0;
 	
-	// function replaceQuestion(){
-	// 	var args = [].slice.call(arguments);
-	// 	var divs = [].slice.call(document.getElementsByTagName('div'));
-	// 	console.log( Object.prototype.toString.call(args));
-	// 	divs.forEach(function(e){e.parentElement.removeChild(e);});
-	// 	args.forEach(function(e){
-	// 		var div = document.createElement('div');
-	// 		var label = document.createElement('label');
-	// 		label.textContent = e;
-	// 		div.appendChild(label);
-	// 	document.body.appendChild(div);
-	// 	});
-	// }
+
 
 
 		// function that changes all Q&A in the question window
@@ -124,44 +89,17 @@ $(function(){
 		$('#pagenum').text(i);
 	}
 
-	// function pageUp() {
-	// 	var q = questionArray[index].question;
-	// 	var a = questionArray[index].ansA;
-	// 	var b = questionArray[index].ansB;
-	// 	var c = questionArray[index].ansC;
-	// 	var d = questionArray[index].ansD;
-	// 	var page = index + 1;
-	// 	replaceQuestion(q, a, b, c, d, page);
-	// 	console.log(index);
-	// 	index++;
-	// }
 
-	// if ($('input[value="New Quiz"]').length) {
-	// 	$('input[type="submit"]').click(function() {
-	// 		$('input[type="submit"]').attr('value','Submit');
-	// 		$('label').show();
-	// 		$('.question').show();
-	// 		if(index<questionArray.length){
-	// 			pageUp();
-	// 			// var q = questionArray[index].question;
-	// 			// var a = questionArray[index].ansA;
-	// 			// var b = questionArray[index].ansB;
-	// 			// var c = questionArray[index].ansC;
-	// 			// var d = questionArray[index].ansD;
-	// 			// var page = index + 1;
-	// 			// replaceQuestion(q, a, b, c, d, page);
-	// 			// console.log(index);
-	// 			// index++;
-	// 		}
-	// 	});
-	// } else {
 
-	// }
-
-	$('input[type="submit"]').click(function() {
+	$('form').submit(function(e){
+		e.preventDefault();
+		var answerTally = 0;
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
+		var x = parseInt($('input[name="answer"]:checked').val(), 10);
+		answerTally += x;
+		console.log(answerTally);
 		if(index<questionArray.length){
 			var q = questionArray[index].question;
 			var a = questionArray[index].ansA;
@@ -170,21 +108,9 @@ $(function(){
 			var d = questionArray[index].ansD;
 			var page = index + 1;
 			replaceQuestion(q, a, b, c, d, page);
-
-			// if (page >= 1) {
-			$('form').submit(function(e){
-				e.preventDefault();
-				var x = parseInt($('input[name="answer"]:checked').val(), 10);
-				var y = answerTally + x;
-				console.log(y);
-				return y;
-
-			});
-			// }
-			// console.log( y);
 			index++;
 		}
-		return false;
+		// return false;
 	});
 	
 });
