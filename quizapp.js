@@ -1,10 +1,10 @@
 $(function(){
-	var questionArray = [];
-		score = 0;
-		$question = $(".question");
-		$ansA = $("label[for='ansA']");
-		$ansB = $("label[for='ansB']");
-		$ansC = $("label[for='ansC']");
+	var questionArray = [],
+		score = 0,
+		$question = $(".question"),
+		$ansA = $("label[for='ansA']"),
+		$ansB = $("label[for='ansB']"),
+		$ansC = $("label[for='ansC']"),
 		$ansD = $("label[for='ansD']");
 
 
@@ -93,7 +93,7 @@ $(function(){
 
 	$('form').submit(function(e){
 		e.preventDefault();
-		var answerTally = 0;
+		// var answerTally = 0;
 		$('input[type="submit"]').attr('value','Submit');
 		$('label').show();
 		$('.question').show();
