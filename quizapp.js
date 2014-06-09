@@ -1,6 +1,6 @@
 $(function(){
 	var questionArray = [];
-		answerTally = 0;
+		score = 0;
 		$question = $(".question");
 		$ansA = $("label[for='ansA']");
 		$ansB = $("label[for='ansB']");
@@ -98,8 +98,8 @@ $(function(){
 		$('label').show();
 		$('.question').show();
 		var x = parseInt($('input[name="answer"]:checked').val(), 10);
-		answerTally += x;
-		console.log(answerTally);
+		score += x;
+		console.log(score);
 		if(index<questionArray.length){
 			var q = questionArray[index].question;
 			var a = questionArray[index].ansA;
@@ -110,7 +110,7 @@ $(function(){
 			replaceQuestion(q, a, b, c, d, page);
 			index++;
 		}
-		// return false;
+		return score;
 	});
 	
 });
